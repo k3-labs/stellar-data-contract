@@ -1,19 +1,26 @@
 #![no_std]
-use soroban_sdk::{contract, contractimpl, log, symbol_short, Env, Symbol};
-use soroban_sdk::String;
+use soroban_sdk::{contract, contractimpl, contracttype, Env, Symbol, String, symbol_short};
 
-const DATA: Symbol = symbol_short!("DATA");
 #[contract]
 pub struct ExchangeRateEURUSD;
+
+#[derive(Clone)]
+#[contracttype]
+enum DataKey {
+    Data,
+}
 
 #[contractimpl]
 impl ExchangeRateEURUSD {
     pub fn write(env: Env, value: String) {
-        env.storage().persistent().set(&DATA, &value);
+        env.storage().persistent().set(&DataKey::Data, &value);
+        env.events().publish((symbol_short!("update"), value.clone()), value.clone());
     }
 
-    pub fn get_latest(env: Env) -> String{
-        env.storage().persistent().get(&DATA).unwrap_or(String::from_str(&env, "None"))
+    pub fn get_latest(env: Env) -> String {
+        env.storage().persistent()
+            .get(&DataKey::Data)
+            .unwrap_or(String::from_str(&env, "None"))
     }
 }
 

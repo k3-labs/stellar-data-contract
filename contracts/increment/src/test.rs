@@ -19,5 +19,9 @@ fn test() {
 
 
   
+    let events = client.env.events().all();
+    for e in events {
+        std::dbg!(e);
+    }
     std::println!("{}", env.logs().all().join("\n"));
 }

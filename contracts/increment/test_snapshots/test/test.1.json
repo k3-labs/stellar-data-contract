@@ -22,7 +22,11 @@
           "contract_data": {
             "contract": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD2KM",
             "key": {
-              "symbol": "DATA"
+              "vec": [
+                {
+                  "symbol": "Data"
+                }
+              ]
             },
             "durability": "persistent"
           }
@@ -35,7 +39,11 @@
                 "ext": "v0",
                 "contract": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD2KM",
                 "key": {
-                  "symbol": "DATA"
+                  "vec": [
+                    {
+                      "symbol": "Data"
+                    }
+                  ]
                 },
                 "durability": "persistent",
                 "val": {
@@ -120,6 +128,29 @@
               },
               {
                 "symbol": "write"
+              }
+            ],
+            "data": {
+              "string": "TEST"
+            }
+          }
+        }
+      },
+      "failed_call": false
+    },
+    {
+      "event": {
+        "ext": "v0",
+        "contract_id": "0000000000000000000000000000000000000000000000000000000000000001",
+        "type_": "contract",
+        "body": {
+          "v0": {
+            "topics": [
+              {
+                "symbol": "update"
+              },
+              {
+                "string": "TEST"
               }
             ],
             "data": {
